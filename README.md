@@ -1,15 +1,15 @@
-# Checking out Docker Swarm
+# Docker Swarm
 
 This is a lab project to check out Docker Swarm in Vagrant.
 
-The overall intent is to make the installation as automated as possible (not reached).
+The overall intent is to get familiar with Docker Swarm and make the installation as automated as possible (not reached).
 
 ## Notes on Docker and Docker Swarm
 
 Docker CLI supplies 2 CLIs in a single binary:
 * Docker operates with containers and images, all well-known commands apply:
   * `docker ps`, etc
-* Docker Swarm operates with services (see "services" section in docker-compose). Those commands create docker-swarm objects to manage which in turn then create "classic" docker containers:
+* Docker Swarm operates with services (see ["services" section](https://docs.docker.com/compose/compose-file/compose-file-v3/#service-configuration-reference) in docker-compose). Those commands create docker-swarm objects to manage which in turn then create "classic" docker containers:
   * Node management: `docker node ls`
   * Service management: `docker service ls` 
 
