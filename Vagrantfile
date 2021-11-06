@@ -7,6 +7,8 @@ Vagrant.configure("2") do |config|
   config.vm.define "master" do |node|
     node.vm.host_name = "master"
     node.vm.network :private_network, ip: "10.0.0.10"
+
+    node.vm.provision :shell, inline: "docker swarm init --advertise-addr 10.0.0.10"
   end
 
   config.vm.define "slave" do |node|
