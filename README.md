@@ -32,6 +32,7 @@ From now on you can run docker commands on both nodes from you laptop like this:
 docker -c v0 ps  # run docker command on master node
 docker -c v1 ps  # run docker command on slave node
 ```
+See [this article](https://www.docker.com/blog/how-to-deploy-on-remote-docker-hosts-with-docker-compose/) to learn more about docker contexts and using them.
 
 2. Connect slave node to Docker Swarm cluster:
 
