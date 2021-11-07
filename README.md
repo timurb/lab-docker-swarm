@@ -4,6 +4,8 @@ This is a lab project to check out Docker Swarm in Vagrant.
 
 The overall intent is to get familiar with Docker Swarm and make the installation as automated as possible (not reached).
 
+Use of [local caching Docker registry](https://github.com/timurb/lab-docker-registry) is also supported.
+
 ## Notes on Docker and Docker Swarm
 
 Docker CLI supplies 2 CLIs in a single binary:
