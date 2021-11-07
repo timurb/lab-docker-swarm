@@ -21,36 +21,40 @@ Docker CLI supplies 2 CLIs in a single binary:
 - [DirEnv](https://direnv.net/) installed and working
 
 ## Usage
-1. Spin up boxes:
+1. Spin up boxes and init docker contexts:
 ```
 vagrant up
+./init-contexts.sh
 ```
+
+From now on you can run docker commands on both nodes from you laptop like this:
+```
+docker -c v0 ps  # run docker command on master node
+docker -c v1 ps  # run docker command on slave node
+```
+
+2. Connect slave node to Docker Swarm cluster:
 
 Watch out for the line like the following in output logs and copy it to clipboard:
 ```
 docker swarm join --token SWMTKN-1-4r6vu7btisznoix70qnums6sxsmln2lyq4m2kit6ldyk5jriyl-9xnh01wucggwqy8tninu9a90m 10.0.0.10:2377
 ```
 
-2. Connect slave node to Docker Swarm cluster:
+Add `-c v1` to the above line and run it from your laptop:
 ```
-vagrant ssh slave
-docker swarm join --token SWMTKN-1-4r6vu7btisznoix70qnums6sxsmln2lyq4m2kit6ldyk5jriyl-9xnh01wucggwqy8tninu9a90m 10.0.0.10:2377
-^D
-vagrant ssh master
-vagrant node list
+docker -c v0 node list
+docker -c v1 swarm join --token SWMTKN-1-4r6vu7btisznoix70qnums6sxsmln2lyq4m2kit6ldyk5jriyl-9xnh01wucggwqy8tninu9a90m 10.0.0.10:2377
+docker -c v0 node list
 ```
 
 3. Start some service on master node:
 ```
-vagrant ssh master
-docker service create --replicas 10 --name helloworld --placement-pref spread=node alpine ping docker.com
-docker service ls
-docker service ps helloworld
-docker node ps $(docker node ls -q)
-docker ps
-^D
-vagrant ssh slave
-docker ps
+docker -c v0 service create --replicas 10 --name helloworld --placement-pref spread=node alpine ping docker.com
+docker -c v0 service ls
+docker -c v0 service ps helloworld
+docker -c v0 node ps $(docker node ls -q)
+docker -c v0 ps
+docker -c v1 ps
 ```
 
 ## License and author

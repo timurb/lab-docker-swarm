@@ -8,5 +8,8 @@ cat > /etc/docker/daemon.json << EOF
 }
 EOF
 
-sudo apt-get update
-sudo apt-get install -y docker.io docker-compose
+apt-get update
+apt-get install -y docker.io docker-compose
+
+gpasswd -a vagrant docker
+
