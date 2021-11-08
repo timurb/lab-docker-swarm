@@ -42,9 +42,9 @@ docker swarm join --token SWMTKN-1-4r6vu7btisznoix70qnums6sxsmln2lyq4m2kit6ldyk5
 
 Add `-c v1` to the above line and run it from your laptop:
 ```
-docker -c v0 node list
+docker -c v0 node ls
 docker -c v1 swarm join --token SWMTKN-1-4r6vu7btisznoix70qnums6sxsmln2lyq4m2kit6ldyk5jriyl-9xnh01wucggwqy8tninu9a90m 10.0.0.10:2377
-docker -c v0 node list
+docker -c v0 node ls
 ```
 
 3. Start some service on master node:
@@ -52,7 +52,7 @@ docker -c v0 node list
 docker -c v0 service create --replicas 10 --name helloworld --placement-pref spread=node alpine ping docker.com
 docker -c v0 service ls
 docker -c v0 service ps helloworld
-docker -c v0 node ps $(docker node ls -q)
+docker -c v0 node ps $(docker -c v0 node ls -q)
 docker -c v0 ps
 docker -c v1 ps
 ```
