@@ -38,14 +38,16 @@ See [this article](https://www.docker.com/blog/how-to-deploy-on-remote-docker-ho
 
 Watch out for the line like the following in output logs and copy it to clipboard:
 ```
-docker swarm join --token SWMTKN-1-4r6vu7btisznoix70qnums6sxsmln2lyq4m2kit6ldyk5jriyl-9xnh01wucggwqy8tninu9a90m 10.0.0.10:2377
+docker swarm join --token SWMTKN-1-4r6vu7btisznoix70qnums6sxsmln2lyq4m2kit6ldyk5jriyl-9xnh01wucggwqy8tninu9a90m 192.168.77.10:2377
 ```
+
+**Note:** Watch out for your local WiFi IP address. If the network inside Vagrant matches your WiFi network you will not be able to access it. For that reason don't ever use networks like 10.0.0.X or 192.168.1.X in Vagrant.
 
 Add `-c v1` to the above line and run it from your laptop:
 ```
-docker -c v0 node ls
-docker -c v1 swarm join --token SWMTKN-1-4r6vu7btisznoix70qnums6sxsmln2lyq4m2kit6ldyk5jriyl-9xnh01wucggwqy8tninu9a90m 10.0.0.10:2377
-docker -c v0 node ls
+docker -c v0 node list
+docker -c v1 swarm join --token SWMTKN-1-4r6vu7btisznoix70qnums6sxsmln2lyq4m2kit6ldyk5jriyl-9xnh01wucggwqy8tninu9a90m 192.168.77.10:2377
+docker -c v0 node list
 ```
 
 3. Start some service on master node:
