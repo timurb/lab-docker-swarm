@@ -11,7 +11,7 @@ services:
       traefik.http.routers.dashboard.entrypoints: dashboard
       traefik.http.routers.dashboard.rule: "(PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
       traefik.http.routers.dashboard.service: api@internal
-      traefik.http.services.traefik.loadbalancer.server.port: 777  # required for swarm mode; any port works here
+      traefik.http.services.traefik.loadbalancer.server.port: "777"  # required for swarm mode; any port works here
 
 
     environment:
@@ -46,7 +46,7 @@ services:
       traefik.enable: "true"
       traefik.http.routers.whoami.rule: "(PathPrefix(`/whoami`))"
       traefik.http.routers.whoami.entrypoints: dashboard
-      traefik.http.services.whoami.loadbalancer.server.port: 80  # required for swarm mode
+      traefik.http.services.whoami.loadbalancer.server.port: "80"  # required for swarm mode
     deploy:
       labels:
         <<: *whoami-labels
