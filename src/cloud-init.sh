@@ -4,7 +4,8 @@
 mkdir -p /etc/docker
 cat > /etc/docker/daemon.json << EOF
 {
-        "registry-mirrors": ["http://10.0.2.2:5000"]
+        "registry-mirrors": ["http://10.0.2.2:5000"],
+        "insecure-registries":  ["10.0.2.2:5000"]
 }
 EOF
 
